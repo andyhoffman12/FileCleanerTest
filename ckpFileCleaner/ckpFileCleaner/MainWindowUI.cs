@@ -38,29 +38,31 @@ namespace WindowsFormsApplication1
 
         private void buttonExecuteProcess_Click(object sender, EventArgs e)
         {
-            result = file.Replace("\0", string.Empty);
+            result = file.Replace("\0", string.Empty); //we remove all the null's from the file
 
             foreach (string i in removeArray)
             {
-                result = result.Replace(i, String.Empty);
+                result = result.Replace(i, String.Empty); //remove a bunch of other garbage from the file
             }
-            result = result.Replace("(", string.Empty);
+            result = result.Replace("(", string.Empty); //remove parens
             result = result.Replace(")", string.Empty);
             
-            stringIndex = result.IndexOf("./export_details");
+            stringIndex = result.IndexOf("./export_details"); //remove the contents upto this point in the file. I think that I can probably do this early on and reduce the removeArray
             result = result.Remove(0, stringIndex);
 
-            stringIndex = result.IndexOf("mkgroup");
+            stringIndex = result.IndexOf("mkgroup"); // remove from here down in the file
             result = result.Remove(0, stringIndex);
 
-            result = result.Replace("mkgroup\r\n", string.Empty);
+            result = result.Replace("mkgroup\r\n", string.Empty); //remove mkgroup from the list
 
-            stringIndex = result.IndexOf("servers-no-internet");
+            stringIndex = result.IndexOf("servers-no-internet"); //remove some more stuff
             result = result.Remove(stringIndex);
-
+            
+            //begin writing the file to disk
             StreamWriter streamWriter = new StreamWriter(ChosenFile + ".txt");
             streamWriter.Write(result);
             streamWriter.Close();
+            // change the text of a label
             labelOutputFile.Text = ChosenFile + ".txt";
             labelOutputFile.TextChanged += new System.EventHandler(this.labelOutputFile_TextChanged);
 
