@@ -80,7 +80,7 @@
     <Compile Include="MainWindowUI.Designer.cs">
       <DependentUpon>MainWindowUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainCode.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainWindowUI.resx">
       <DependentUpon>MainWindowUI.cs</DependentUpon>
