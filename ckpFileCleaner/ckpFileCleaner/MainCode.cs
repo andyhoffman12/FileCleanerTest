@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    static class Main
+    static class MainCode
     {
         /// <summary>
         /// The main entry point for the application.

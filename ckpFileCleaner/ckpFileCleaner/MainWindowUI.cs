@@ -17,8 +17,49 @@ namespace WindowsFormsApplication1
         public string ChosenFile = "";
         public string file = "";
         public string result = "";
-        string[] removeArray = new string[] { "	:obj_name ", "			:Table (network_objects)\r\n", "	:obj_table (network_objects)\r\n", "		:update_url (\"network_objects:\")\r\n", "		:update_logic (override)\r\n", "		:update_id_param (@)\r\n", "			:ClassName (host_plain)\r\n", "		:type (host)\r\n", "			:table (network_objects)\r\n", "		:Wiznum (-1)\r\n", "			:icon (\"NetworkObjects/Nodes/Host\")\r\n", "		:read_community ()\r\n", "		:sysContact ()\r\n", "		:sysDescr ()\r\n", "		:sysLocation ()\r\n", "		:sysName ()\r\n", "		:write_community ()\r\n", "		:add_adtr_rule (false)\r\n", "		:certificates ()\r\n", "		:data_source (not-installed)\r\n", "		:edges ()\r\n", "		:enforce_gtp_rate_limit (false)\r\n", "		:gtp_rate_limit (2048)\r\n", "		:interfaces ()\r\n", "		:os_info ()\r\n", "		:DAG (false)\r\n", "		:NAT ()\r\n", "		:SNMP ()\r\n", "		:VPN ()\r\n", "		:additional_products ()\r\n", "		:color (black)\r\n", "		:comments ()\r\n", "		:connectra (false)\r\n", "		:connectra_settings ()\r\n", "		:cp_products_installed (false)\r\n", "		:data_source_settings ()\r\n", "		:firewall (not-installed)\r\n", "		:floodgate (not-installed)" };
-        int stringIndex = 0;
+        string[] removeArray = new string[] 
+        {   "	:obj_name ", 
+            "			:Table (network_objects)\r\n",
+            "	:obj_table (network_objects)\r\n", 
+            "		:update_url (\"network_objects:\")\r\n",
+            "		:update_logic (override)\r\n", 
+            "		:update_id_param (@)\r\n", 
+            "			:ClassName (host_plain)\r\n", 
+            "		:type (host)\r\n", 
+            "			:table (network_objects)\r\n", 
+            "		:Wiznum (-1)\r\n", 
+            "			:icon (\"NetworkObjects/Nodes/Host\")\r\n", 
+            "		:read_community ()\r\n", 
+            "		:sysContact ()\r\n", 
+            "		:sysDescr ()\r\n", 
+            "		:sysLocation ()\r\n", 
+            "		:sysName ()\r\n", 
+            "		:write_community ()\r\n", 
+            "		:add_adtr_rule (false)\r\n", 
+            "		:certificates ()\r\n", 
+            "		:data_source (not-installed)\r\n", 
+            "		:edges ()\r\n", 
+            "		:enforce_gtp_rate_limit (false)\r\n", 
+            "		:gtp_rate_limit (2048)\r\n", 
+            "		:interfaces ()\r\n", 
+            "		:os_info ()\r\n", 
+            "		:DAG (false)\r\n", 
+            "		:NAT ()\r\n", 
+            "		:SNMP ()\r\n", 
+            "		:VPN ()\r\n", 
+            "		:additional_products ()\r\n", 
+            "		:color (black)\r\n", 
+            "		:comments ()\r\n", 
+            "		:connectra (false)\r\n", 
+            "		:connectra_settings ()\r\n", 
+            "		:cp_products_installed (false)\r\n", 
+            "		:data_source_settings ()\r\n", 
+            "		:firewall (not-installed)\r\n", 
+            "		:floodgate (not-installed)\r\n",
+            "       :AdminInfo\r\n",
+            "			:chkpf_uid \"{",
+            "				:name "};
+        //int stringIndex = 0;
 
         public MainForm()
         {
@@ -47,16 +88,16 @@ namespace WindowsFormsApplication1
             result = result.Replace("(", string.Empty); //remove parens
             result = result.Replace(")", string.Empty);
             
-            stringIndex = result.IndexOf("./export_details"); //remove the contents upto this point in the file. I think that I can probably do this early on and reduce the removeArray
-            result = result.Remove(0, stringIndex);
+            //stringIndex = result.IndexOf("./export_details"); //remove the contents upto this point in the file. I think that I can probably do this early on and reduce the removeArray
+            //result = result.Remove(0, stringIndex);
 
-            stringIndex = result.IndexOf("mkgroup"); // remove from here down in the file
-            result = result.Remove(0, stringIndex);
+            //stringIndex = result.IndexOf("mkgroup"); // remove from here down in the file
+            //result = result.Remove(0, stringIndex);
 
             result = result.Replace("mkgroup\r\n", string.Empty); //remove mkgroup from the list
 
-            stringIndex = result.IndexOf("servers-no-internet"); //remove some more stuff
-            result = result.Remove(stringIndex);
+            //stringIndex = result.IndexOf("servers-no-internet"); //remove some more stuff
+            //result = result.Remove(stringIndex);
             
             //begin writing the file to disk
             StreamWriter streamWriter = new StreamWriter(ChosenFile + ".txt");
